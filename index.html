@@ -21,6 +21,38 @@
   </header>
   <main>
     <div data-view="edit-profile"></div>
+    <form action="">
+      <div class="row-1">
+        <div class="column-avatarImg">
+          <input id="avatarImage" type="image" src="images/placeholder-image-square.jpg" alt="Avatar image">
+        </div>
+        <div class="column-formInputs">
+          <label for="avatarURL"> Avatar URL: </label>
+          <div>
+            <input type="url" name="avatarURL" id="avatarURL">
+          </div>
+          <label for="username">Username: </label>
+          <div>
+            <input type="text" name="username" id="username">
+          </div>
+          <label for="fullName"> Full Name: </label>
+          <div>
+            <input type="text" name="fullName" id="fullName">
+          </div>
+          <label for="location">Location</label>
+          <div>
+            <input type="text" name="location" id="location">
+          </div>
+        </div>
+        <div class="row-2">
+          <label for="bio">Bio:</label>
+          <div>
+            <textarea name="bio" id="bio" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+      </div>
+      <button type="submit">SAVE</button>
+    </form>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
