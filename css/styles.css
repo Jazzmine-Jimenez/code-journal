@@ -1,6 +1,8 @@
 /* Header - font-family: 'Acme', sans-serif;
 body - font-family: 'Open Sans Condensed', sans-serif; */
 
-body {
-  background-color: rgb(238, 206, 238);
+/* accent color -  background-color: rgb(238, 206, 238); */
+
+header {
+  font-family: 'Acme', sans-serif;
 }
