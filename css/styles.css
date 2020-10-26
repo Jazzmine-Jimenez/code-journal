@@ -6,3 +6,11 @@ body - font-family: 'Open Sans Condensed', sans-serif; */
 header {
   font-family: 'Acme', sans-serif;
 }
+
+form {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#avatarImage {
+  width: 20%;
+}
