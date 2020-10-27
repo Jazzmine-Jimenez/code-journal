@@ -1,5 +1,6 @@
 var $avatarURL = document.getElementById('avatar-URL');
 var $avatarImage = document.getElementById('avatarImage');
+var $form = document.querySelector('form');
 
 $avatarURL.addEventListener('input', function (event) {
   $avatarImage.setAttribute('src', event.target.value);
@@ -11,12 +12,14 @@ var $fullName = document.getElementById('fullName');
 var $location = document.getElementById('location');
 var $bio = document.querySelector('textarea');
 
-$saveButton.addEventListener('click', function (event) {
+$saveButton.addEventListener('submit', function (event) {
+  event.preventDefault();
   data.profile.avatarUrl = $avatarURL.value;
   data.profile.username = $userName.value;
   data.profile.fullName = $fullName.value;
   data.profile.location = $location.value;
   data.profile.bio = $bio.value;
+  $form.reset();
 });
 
 var previousData = localStorage.getItem('data');
