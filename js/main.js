@@ -18,3 +18,16 @@ $saveButton.addEventListener('click', function (event) {
   data.profile.location = $location.value;
   data.profile.bio = $bio.value;
 });
+
+var savedData = {};
+
+var previousData = localStorage.getItem('javascript-local-storage');
+if (previousData !== null) {
+  savedData = JSON.parse(previousData);
+}
+
+window.addEventListener('beforeunload', function (event) {
+  event.preventDefault();
+  var savedDataJson = JSON.stringify(savedData);
+  localStorage.setItem('javascript-local-storage', savedDataJson);
+});
