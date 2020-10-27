@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  font-size: 2.5rem;
+  font-family: 'Acme', sans-serif;
+  text-align: center;
+  background-color: rgb(238, 206, 238);
+}
+
+form {
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin-bottom: 1rem;
+}
+
+input,
+textarea,
+#avatarImage {
+  width: 100%;
+}
+
+label {
+  line-height: 40px;
+}
+
+input {
+  line-height: 42px;
+}
+
+.saveButton {
+  text-align: right;
+}
