@@ -6,13 +6,12 @@ $avatarURL.addEventListener('input', function (event) {
   $avatarImage.setAttribute('src', event.target.value);
 });
 
-var $saveButton = document.querySelector('button');
 var $userName = document.getElementById('username');
 var $fullName = document.getElementById('fullName');
 var $location = document.getElementById('location');
 var $bio = document.querySelector('textarea');
 
-$saveButton.addEventListener('submit', function (event) {
+$form.addEventListener('submit', function (event) {
   event.preventDefault();
   data.profile.avatarUrl = $avatarURL.value;
   data.profile.username = $userName.value;
