@@ -9,14 +9,15 @@ header {
   background-color: rgb(238, 206, 238);
 }
 
-form {
+body {
   font-family: 'Open Sans Condensed', sans-serif;
   margin-bottom: 1rem;
+  justify-content: center;
 }
 
 input,
 textarea,
-#avatarImage {
+.avatarImage {
   width: 100%;
 }
 
@@ -30,4 +31,13 @@ input {
 
 .saveButton {
   text-align: right;
+}
+
+.person-icon,
+.location-icon {
+  width: 1.7rem;
+}
+
+.icons {
+  line-height: 1rem;
 }
