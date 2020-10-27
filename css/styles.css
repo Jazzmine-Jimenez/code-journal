@@ -1,20 +1,17 @@
-/* accent color -  background-color: rgb(238, 206, 238); */
 * {
   box-sizing: border-box;
-}
-
-main {
-  justify-content: center;
 }
 
 header {
   font-size: 2.5rem;
   font-family: 'Acme', sans-serif;
   text-align: center;
+  background-color: rgb(238, 206, 238);
 }
 
-.container {
+form {
   font-family: 'Open Sans Condensed', sans-serif;
+  margin-bottom: 1rem;
 }
 
 input,
@@ -24,7 +21,7 @@ textarea,
 }
 
 label {
-  line-height: 48px;
+  line-height: 40px;
 }
 
 input {

@@ -19,15 +19,12 @@ $saveButton.addEventListener('click', function (event) {
   data.profile.bio = $bio.value;
 });
 
-var savedData = {};
-
-var previousData = localStorage.getItem('javascript-local-storage');
+var previousData = localStorage.getItem('data');
 if (previousData !== null) {
-  savedData = JSON.parse(previousData);
+  data = JSON.parse(previousData);
 }
 
 window.addEventListener('beforeunload', function (event) {
-  event.preventDefault();
-  var savedDataJson = JSON.stringify(savedData);
-  localStorage.setItem('javascript-local-storage', savedDataJson);
+  var savedDataJson = JSON.stringify(data);
+  localStorage.setItem('data', savedDataJson);
 });
