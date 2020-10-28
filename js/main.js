@@ -1,10 +1,11 @@
 // ------------------------EDITING PROFILE
 var $avatarURL = document.getElementById('avatar-URL');
-var $avatarImage = document.getElementById('avatarImage');
+var $avatarEditImage = document.querySelector('.avatarEditImage');
 var $form = document.querySelector('form');
 
 $avatarURL.addEventListener('input', function (event) {
-  $avatarImage.setAttribute('src', event.target.value);
+  var imageURL = event.target.value;
+  $avatarEditImage.setAttribute('src', imageURL);
 });
 
 var $userName = document.getElementById('username');
@@ -35,13 +36,12 @@ window.addEventListener('beforeunload', function (event) {
 
 // ----------------Creating the DOM tree -------------
 function domTreeCreation(model) {
-
-  var $profile = document.createElement('div');
-  $profile.setAttribute('data-view', 'profile');
+  // var $profile = document.createElement('div');
+  // $profile.setAttribute('data-view', 'profile');
 
   var $container = document.createElement('div');
-  $container.setAttribute('class', 'container');
-  $profile.appendChild($container);
+  $container.setAttribute('class', 'container p');
+  // $profile.appendChild($container);
 
   // -----First Row ---------------------------------
   var $row1 = document.createElement('div');
@@ -67,7 +67,7 @@ function domTreeCreation(model) {
   $row2.appendChild($columnHalf1);
 
   var $profilePic = document.createElement('img');
-  $profilePic.setAttribute('class', 'avatarImage');
+  $profilePic.setAttribute('class', 'avatarProfileImage');
   $profilePic.setAttribute('src', model.avatarUrl);
   $columnHalf1.appendChild($profilePic);
 
@@ -77,13 +77,15 @@ function domTreeCreation(model) {
 
   var $username = document.createElement('span');
   $username.setAttribute('class', 'far fa-user');
-  var $addingUsername = document.createTextNode(model.username);
+  var $addingUsername = document.createTextNode(' ' + model.username);
   $username.appendChild($addingUsername);
   $columnHalf2.appendChild($username);
+  var $break = document.createElement('br');
+  $columnHalf2.appendChild($break);
 
   var $location = document.createElement('span');
-  $location.setAttribute('class', 'far fa-map-marker-alt');
-  var $addingLocation = document.createTextNode(model.location);
+  $location.setAttribute('class', 'fas fa-map-marker-alt');
+  var $addingLocation = document.createTextNode(' ' + model.location);
   $location.appendChild($addingLocation);
   $columnHalf2.appendChild($location);
 
@@ -91,6 +93,9 @@ function domTreeCreation(model) {
   var $addingBio = document.createTextNode(model.bio);
   $bio.appendChild($addingBio);
   $columnHalf2.appendChild($bio);
+
+  return $container;
+
 }
 
 // -----------View Swapping Function -------------------
@@ -106,6 +111,19 @@ function viewSwapping(view) {
   if (view === 'profile') {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
+    var $containerProfile = document.querySelector('.container.p');
+    $profile.removeChild($containerProfile);
+    var newDomtree = domTreeCreation(data.profile);
+    $profile.appendChild(newDomtree);
   }
 
 }
+
+// ----------------DOM-Content-Loaded-page-----------
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (data.profile.username === '' || data.profile.username === null) {
+    viewSwapping('edit-profile');
+  }
+  //  else if (data.profile.username !== null)
+});
