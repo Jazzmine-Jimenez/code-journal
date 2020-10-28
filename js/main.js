@@ -32,7 +32,7 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('data', savedDataJson);
 });
 
-// ----------------VIEWING PROFILE
+// ----------------Creating the DOM tree -------------
 function domTreeCreation(model) {
 
   var $profile = document.createElement('div');
@@ -42,7 +42,7 @@ function domTreeCreation(model) {
   $container.setAttribute('class', 'container');
   $profile.appendChild($container);
 
-  // First Row ------------------------------------
+  // First Row ---------------------------------
   var $row1 = document.createElement('div');
   $row1.setAttribute('class', 'row');
   $container.appendChild($row1);
@@ -56,7 +56,7 @@ function domTreeCreation(model) {
   $headerName.appendChild($name);
   $columnFull.appendChild($headerName);
 
-  // Second Row ----------------------------------------
+  // Second Row ------------------------------------
   var $row2 = document.createElement('div');
   $row2.setAttribute('class', 'row');
   $container.appendChild($row2);
@@ -90,4 +90,21 @@ function domTreeCreation(model) {
   var $addingBio = document.createTextNode(model.bio);
   $bio.appendChild($addingBio);
   $columnHalf2.appendChild($bio);
+}
+
+// -----------View Swapping Function -------------------
+function viewSwapping(view) {
+  var $profile = document.querySelector('.profile');
+  var $edit = document.querySelector('.edit');
+
+  if (view === 'edit-profile') {
+    $edit.className = 'edit';
+    $profile.className = 'profile hidden';
+  }
+
+  if (view === 'profile') {
+    $profile.className = 'profile';
+    $edit.className = 'edit hidden';
+  }
+
 }
