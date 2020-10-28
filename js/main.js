@@ -20,6 +20,7 @@ $form.addEventListener('submit', function (event) {
   data.profile.location = $location.value;
   data.profile.bio = $bio.value;
   $form.reset();
+  viewSwapping('profile');
 });
 
 var previousData = localStorage.getItem('data');
@@ -42,7 +43,7 @@ function domTreeCreation(model) {
   $container.setAttribute('class', 'container');
   $profile.appendChild($container);
 
-  // First Row ---------------------------------
+  // -----First Row ---------------------------------
   var $row1 = document.createElement('div');
   $row1.setAttribute('class', 'row');
   $container.appendChild($row1);
@@ -56,7 +57,7 @@ function domTreeCreation(model) {
   $headerName.appendChild($name);
   $columnFull.appendChild($headerName);
 
-  // Second Row ------------------------------------
+  // ------Second Row ------------------------------------
   var $row2 = document.createElement('div');
   $row2.setAttribute('class', 'row');
   $container.appendChild($row2);
