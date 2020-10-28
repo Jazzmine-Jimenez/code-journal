@@ -1,4 +1,3 @@
-// ------------------------EDITING PROFILE
 var $avatarURL = document.getElementById('avatar-URL');
 var $avatarEditImage = document.querySelector('.avatarEditImage');
 var $form = document.querySelector('form');
@@ -36,14 +35,10 @@ window.addEventListener('beforeunload', function (event) {
 
 // ----------------Creating the DOM tree -------------
 function domTreeCreation(model) {
-  // var $profile = document.createElement('div');
-  // $profile.setAttribute('data-view', 'profile');
-
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container p');
-  // $profile.appendChild($container);
 
-  // -----First Row ---------------------------------
+  // -----First Row -----------------------
   var $row1 = document.createElement('div');
   $row1.setAttribute('class', 'row');
   $container.appendChild($row1);
@@ -57,7 +52,7 @@ function domTreeCreation(model) {
   $headerName.appendChild($name);
   $columnFull.appendChild($headerName);
 
-  // ------Second Row ------------------------------------
+  // ------Second Row -----------------------
   var $row2 = document.createElement('div');
   $row2.setAttribute('class', 'row');
   $container.appendChild($row2);
@@ -95,7 +90,6 @@ function domTreeCreation(model) {
   $columnHalf2.appendChild($bio);
 
   return $container;
-
 }
 
 // -----------View Swapping Function -------------------
@@ -111,19 +105,17 @@ function viewSwapping(view) {
   if (view === 'profile') {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
-    var $containerProfile = document.querySelector('.container.p');
-    $profile.removeChild($containerProfile);
     var newDomtree = domTreeCreation(data.profile);
     $profile.appendChild(newDomtree);
   }
 
 }
 
-// ----------------DOM-Content-Loaded-page-----------
-
+// Allow users to see their created profile
 document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === '' || data.profile.username === null) {
     viewSwapping('edit-profile');
+  } else {
+    viewSwapping('profile');
   }
-  //  else if (data.profile.username !== null)
 });
