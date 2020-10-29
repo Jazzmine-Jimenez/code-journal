@@ -129,7 +129,7 @@ function viewSwapping(view) {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
 
-    var $container = document.querySelector('.container');
+    var $container = document.querySelector('.container.p');
     $profile.removeChild($container);
 
     var newDomtree = domTreeCreation(data.profile);
@@ -156,10 +156,13 @@ document.addEventListener('click', function (event) {
 
 document.addEventListener('click', function (event) {
   var $navbarProfile = document.querySelector('.navbarProfile');
-  if (event.target === $navbarProfile) {
-    viewSwapping('profile');
+  if (event.target !== $navbarProfile) {
+    return;
   }
   if (data.profile.username === '' || data.profile.username === null) {
     viewSwapping('edit-profile');
+  }
+  if (event.target === $navbarProfile) {
+    viewSwapping('profile');
   }
 });
