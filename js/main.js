@@ -36,7 +36,7 @@ window.addEventListener('beforeunload', function (event) {
 // ----------------Creating the DOM tree -------------
 function domTreeCreation(model) {
   var $container = document.createElement('div');
-  $container.setAttribute('class', 'container p');
+  $container.setAttribute('class', 'container viewProfile');
 
   // -----First Row -----------------------
   var $row1 = document.createElement('div');
@@ -129,7 +129,7 @@ function viewSwapping(view) {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
 
-    var $container = document.querySelector('.container.p');
+    var $container = document.querySelector('.container.viewProfile');
     $profile.removeChild($container);
 
     var newDomtree = domTreeCreation(data.profile);
@@ -148,21 +148,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 document.addEventListener('click', function (event) {
-  var $editButtonContainer = document.querySelector('.editButton');
-  if (event.target === $editButtonContainer) {
-    viewSwapping('edit-profile');
-  }
-});
-
-document.addEventListener('click', function (event) {
-  var $navbarProfile = document.querySelector('.navbarProfile');
-  if (event.target !== $navbarProfile) {
+  if (event.target.tagName !== 'A') {
     return;
   }
-  if (data.profile.username === '' || data.profile.username === null) {
+  if (data.profile.username === '') {
     viewSwapping('edit-profile');
-  }
-  if (event.target === $navbarProfile) {
-    viewSwapping('profile');
+  } else {
+    var requestedView = event.target.getAttribute('data-view');
+    viewSwapping(requestedView);
   }
 });
