@@ -22,6 +22,39 @@
     <a class="navbarEntries" href="#" data-view="entries">Entries</a>
   </header>
   <main>
+<!----------------------- CREATE ENTRIES ---------------------------->
+    <div data-view="create-entry">
+      <form action="">
+        <div class="container">
+          <div class="row">
+            <h1>New Entry</h1>
+          </div>
+          <div class="row">
+            <div class="column-half">
+              <img class="entriesEditImage" src="images/Aurora.jpg" alt="New Entry Image">
+            </div>
+            <div class="column-half">
+              <label for="imageURL">Image URL:</label>
+              <div>
+                <input type="url" name="imageURL" id="imageURL">
+              </div>
+              <label for="title">Title:</label>
+              <div>
+                <input type="text" name="title" id="title">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes">Notes:</label>
+              <div>
+                <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 <!----------------------- ENTRIES ---------------------------->
     <div data-view="entries"></div>
 <!----------------------- VIEW PROFILE ---------------------------->
