@@ -1,3 +1,4 @@
+// -----------------EDIT PROFILE SET UP-----------------------
 var $avatarURL = document.getElementById('avatar-URL');
 var $avatarEditImage = document.querySelector('.avatarEditImage');
 var $form = document.querySelector('form');
@@ -33,7 +34,7 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('data', savedDataJson);
 });
 
-// ----------------Creating the DOM tree -------------
+// ----------------RENDERING FUNCTION-------------
 function domTreeCreation(model) {
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container viewProfile');
@@ -103,7 +104,7 @@ function domTreeCreation(model) {
   return $container;
 }
 
-// -----------View Swapping Function -------------------
+// -----------   VIEW SWAPPING  -------------------
 function viewSwapping(view) {
   var $profile = document.querySelector('.profile');
   var $edit = document.querySelector('.edit');
@@ -147,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 });
 
+// Navagating through website
 document.addEventListener('click', function (event) {
   if (event.target.tagName !== 'A') {
     return;
