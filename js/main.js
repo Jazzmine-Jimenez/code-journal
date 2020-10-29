@@ -89,6 +89,17 @@ function domTreeCreation(model) {
   $bio.appendChild($addingBio);
   $columnHalf2.appendChild($bio);
 
+  var $editButtonContainer = document.createElement('div');
+  $editButtonContainer.setAttribute('class', 'editButtonContainer');
+  $columnHalf2.appendChild($editButtonContainer);
+
+  var $editButton = document.createElement('a');
+  $editButton.setAttribute('href', '#');
+  $editButton.setAttribute('data-view', 'edit-profile');
+  $editButton.setAttribute('class', 'editButton');
+  $editButton.textContent = 'EDIT';
+  $editButtonContainer.appendChild($editButton);
+
   return $container;
 }
 
@@ -100,11 +111,22 @@ function viewSwapping(view) {
   if (view === 'edit-profile') {
     $edit.className = 'edit';
     $profile.className = 'profile hidden';
+
+    $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
+    $avatarURL.setAttribute('value', data.profile.avatarUrl);
+    $userName.setAttribute('value', data.profile.username);
+    $fullName.setAttribute('value', data.profile.fullName);
+    $location.setAttribute('value', data.profile.location);
+    $bio.textContent = data.profile.bio;
   }
 
   if (view === 'profile') {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
+
+    var $container = document.querySelector('.container');
+    $profile.removeChild($container);
+
     var newDomtree = domTreeCreation(data.profile);
     $profile.appendChild(newDomtree);
   }
@@ -117,5 +139,22 @@ document.addEventListener('DOMContentLoaded', function (event) {
     viewSwapping('edit-profile');
   } else {
     viewSwapping('profile');
+  }
+});
+
+document.addEventListener('click', function (event) {
+  var $editButtonContainer = document.querySelector('.editButton');
+  if (event.target === $editButtonContainer) {
+    viewSwapping('edit-profile');
+  }
+});
+
+document.addEventListener('click', function (event) {
+  var $navbarProfile = document.querySelector('.navbarProfile');
+  if (event.target === $navbarProfile) {
+    viewSwapping('profile');
+  }
+  if (data.profile.username === '' || data.profile.username === null) {
+    viewSwapping('edit-profile');
   }
 });
