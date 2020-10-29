@@ -3,8 +3,8 @@ var $avatarEditImage = document.querySelector('.avatarEditImage');
 var $form = document.querySelector('form');
 
 $avatarURL.addEventListener('input', function (event) {
-  var imageURL = event.target.value;
-  $avatarEditImage.setAttribute('src', imageURL);
+  data.profile.avatarUrl = event.target.value;
+  $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
 });
 
 var $userName = document.getElementById('username');
@@ -112,7 +112,12 @@ function viewSwapping(view) {
     $edit.className = 'edit';
     $profile.className = 'profile hidden';
 
-    $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
+    if (data.profile.avatarUrl === null || data.profile.avatarUrl === '') {
+      $avatarEditImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+    } else {
+      $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
+    }
+
     $avatarURL.setAttribute('value', data.profile.avatarUrl);
     $userName.setAttribute('value', data.profile.username);
     $fullName.setAttribute('value', data.profile.fullName);
@@ -133,7 +138,7 @@ function viewSwapping(view) {
 
 }
 
-// Allow users to see their created profile
+// New User Screen VS Returning User Screen
 document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === '' || data.profile.username === null) {
     viewSwapping('edit-profile');
