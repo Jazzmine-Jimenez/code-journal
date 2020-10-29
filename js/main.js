@@ -3,8 +3,8 @@ var $avatarEditImage = document.querySelector('.avatarEditImage');
 var $form = document.querySelector('form');
 
 $avatarURL.addEventListener('input', function (event) {
-  var imageURL = event.target.value;
-  $avatarEditImage.setAttribute('src', imageURL);
+  data.profile.avatarUrl = event.target.value;
+  $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
 });
 
 var $userName = document.getElementById('username');
@@ -36,7 +36,7 @@ window.addEventListener('beforeunload', function (event) {
 // ----------------Creating the DOM tree -------------
 function domTreeCreation(model) {
   var $container = document.createElement('div');
-  $container.setAttribute('class', 'container p');
+  $container.setAttribute('class', 'container viewProfile');
 
   // -----First Row -----------------------
   var $row1 = document.createElement('div');
@@ -89,6 +89,17 @@ function domTreeCreation(model) {
   $bio.appendChild($addingBio);
   $columnHalf2.appendChild($bio);
 
+  var $editButtonContainer = document.createElement('div');
+  $editButtonContainer.setAttribute('class', 'editButtonContainer');
+  $columnHalf2.appendChild($editButtonContainer);
+
+  var $editButton = document.createElement('a');
+  $editButton.setAttribute('href', '#');
+  $editButton.setAttribute('data-view', 'edit-profile');
+  $editButton.setAttribute('class', 'editButton');
+  $editButton.textContent = 'EDIT';
+  $editButtonContainer.appendChild($editButton);
+
   return $container;
 }
 
@@ -100,22 +111,50 @@ function viewSwapping(view) {
   if (view === 'edit-profile') {
     $edit.className = 'edit';
     $profile.className = 'profile hidden';
+
+    if (data.profile.avatarUrl === null || data.profile.avatarUrl === '') {
+      $avatarEditImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+    } else {
+      $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
+    }
+
+    $avatarURL.setAttribute('value', data.profile.avatarUrl);
+    $userName.setAttribute('value', data.profile.username);
+    $fullName.setAttribute('value', data.profile.fullName);
+    $location.setAttribute('value', data.profile.location);
+    $bio.textContent = data.profile.bio;
   }
 
   if (view === 'profile') {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
+
+    var $container = document.querySelector('.container.viewProfile');
+    $profile.removeChild($container);
+
     var newDomtree = domTreeCreation(data.profile);
     $profile.appendChild(newDomtree);
   }
 
 }
 
-// Allow users to see their created profile
+// New User Screen VS Returning User Screen
 document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === '' || data.profile.username === null) {
     viewSwapping('edit-profile');
   } else {
     viewSwapping('profile');
+  }
+});
+
+document.addEventListener('click', function (event) {
+  if (event.target.tagName !== 'A') {
+    return;
+  }
+  if (data.profile.username === '') {
+    viewSwapping('edit-profile');
+  } else {
+    var requestedView = event.target.getAttribute('data-view');
+    viewSwapping(requestedView);
   }
 });

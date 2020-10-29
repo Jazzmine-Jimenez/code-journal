@@ -18,24 +18,24 @@
 <body>
   <header>
     Code Journal
+    <a class="navbarProfile" href="#" data-view="profile">Profile</a>
   </header>
   <main>
 <!----------------------- VIEW PROFILE ---------------------------->
     <div class="profile hidden" data-view="profile">
-      <div class="container"></div>
+      <div class="container viewProfile"></div>
     </div>
-
-<!-------------------- EDIT PROFILE --------------------->
+<!-------------------- EDIT PROFILE --------------------------------->
     <div class="edit" data-view="edit-profile">
     <form action="">
-      <div class="container">
+      <div class="container editProfile">
         <div class="row">
           <h1>Edit Profile</h1>
         </div>
         <div class="row">
           <!------------------ Avatar Image Column --------------------------->
           <div class="column-half">
-            <img class="avatarEditImage" type="image" src="images/placeholder-image-square.jpg" alt="Avatar image"/>
+            <img class="avatarEditImage" src="images/placeholder-image-square.jpg" alt="Avatar image">
           </div>
           <!------------------ Input Column--------------------------->
           <div class="column-half">
@@ -64,8 +64,8 @@
               <div class="textarea">
                 <textarea required name="bio" id="bio" cols="50" rows="10"></textarea>
               </div>
-            <div class="saveButton">
-              <button type="submit">SAVE</button>
+            <div class="saveButtonContainer">
+              <button class="saveButton" type="submit">SAVE</button>
             </div>
         </div>
       </div>
