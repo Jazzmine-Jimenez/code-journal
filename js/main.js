@@ -4,10 +4,9 @@ var $avatarEditImage = document.querySelector('.avatarEditImage');
 var $editForm = document.querySelector('.edit-profile-form');
 var $imageURL = document.getElementById('imageURL');
 var $userInputURL = document.querySelector('.entriesEditImage');
-
 var $createForm = document.querySelector('.create-entries-form');
-/// How to navagate to form button when submitting to save to local storage, i think?
 
+// allow user to preview image before saving
 $imageURL.addEventListener('input', function (event) {
   var url = event.target.value;
   $userInputURL.setAttribute('src', url);
@@ -34,8 +33,17 @@ $editForm.addEventListener('submit', function (event) {
   viewSwapping('profile');
 });
 
+var $title = document.getElementById('title');
+var $notes = document.getElementById('notes');
+
 $createForm.addEventListener('submit', function (event) {
-  viewSwapping('profile');
+  data.entries.imageUrl = $imageURL.value;
+  data.entries.title = $title.value;
+  data.entries.notes = $notes.value;
+
+  $avatarEditImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $createForm.reset();
+  viewSwapping('entries');
 });
 
 var previousData = localStorage.getItem('data');

@@ -9,5 +9,11 @@ var data = {
     avatarUrl: '',
     bio: ''
   },
-  entries: []
+
+  // How to get info from a an array within an object
+  entries: [{
+    imageUrl: '',
+    title: '',
+    notes: ''
+  }]
 };
