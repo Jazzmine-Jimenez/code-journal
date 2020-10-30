@@ -27,12 +27,13 @@ input {
   line-height: 40px;
 }
 
-.saveButtonContainer {
+.buttonContainer {
   text-align: right;
 }
 
 .editButton,
-.saveButton {
+.saveButton,
+.newEntriesButton {
   font-family: 'Open Sans Condensed', sans-serif;
   background-color: white;
   color: black;

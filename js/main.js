@@ -1,7 +1,17 @@
 // -----------------EDIT PROFILE SET UP-----------------------
 var $avatarURL = document.getElementById('avatar-URL');
 var $avatarEditImage = document.querySelector('.avatarEditImage');
-var $form = document.querySelector('form');
+var $editForm = document.querySelector('.edit-profile-form');
+var $imageURL = document.getElementById('imageURL');
+var $userInputURL = document.querySelector('.entriesEditImage');
+
+var $createForm = document.querySelector('.create-entries-form');
+/// How to navagate to form button when submitting to save to local storage, i think?
+
+$imageURL.addEventListener('input', function (event) {
+  var url = event.target.value;
+  $userInputURL.setAttribute('src', url);
+});
 
 $avatarURL.addEventListener('input', function (event) {
   data.profile.avatarUrl = event.target.value;
@@ -11,16 +21,20 @@ $avatarURL.addEventListener('input', function (event) {
 var $userName = document.getElementById('username');
 var $fullName = document.getElementById('fullName');
 var $location = document.getElementById('location');
-var $bio = document.querySelector('textarea');
+var $bio = document.getElementById('bio');
 
-$form.addEventListener('submit', function (event) {
+$editForm.addEventListener('submit', function (event) {
   event.preventDefault();
   data.profile.avatarUrl = $avatarURL.value;
   data.profile.username = $userName.value;
   data.profile.fullName = $fullName.value;
   data.profile.location = $location.value;
   data.profile.bio = $bio.value;
-  $form.reset();
+  $editForm.reset();
+  viewSwapping('profile');
+});
+
+$createForm.addEventListener('submit', function (event) {
   viewSwapping('profile');
 });
 
@@ -104,16 +118,21 @@ function domTreeCreation(model) {
   return $container;
 }
 
-// -----------   VIEW SWAPPING  -------------------
+// -----------   VIEW SWAPPING FUNCTION  -------------------
 function viewSwapping(view) {
   var $profile = document.querySelector('.profile');
   var $edit = document.querySelector('.edit');
+  var $entries = document.querySelector('.entries');
+  var $createEntries = document.querySelector('.createEntries');
 
+  // ------edit-profile view---------
   if (view === 'edit-profile') {
     $edit.className = 'edit';
     $profile.className = 'profile hidden';
+    $entries.className = 'entries hidden';
+    $createEntries.className = 'createEntries hidden';
 
-    if (data.profile.avatarUrl === null || data.profile.avatarUrl === '') {
+    if (data.profile.avatarUrl === '') {
       $avatarEditImage.setAttribute('src', 'images/placeholder-image-square.jpg');
     } else {
       $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
@@ -126,9 +145,12 @@ function viewSwapping(view) {
     $bio.textContent = data.profile.bio;
   }
 
+  // -------profile view-----------
   if (view === 'profile') {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
+    $entries.className = 'entries hidden';
+    $createEntries.className = 'createEntries hidden';
 
     var $container = document.querySelector('.container.viewProfile');
     $profile.removeChild($container);
@@ -137,11 +159,29 @@ function viewSwapping(view) {
     $profile.appendChild(newDomtree);
   }
 
+  // -------entries view-----------
+  if (view === 'entries') {
+
+    $entries.className = 'entries';
+    $profile.className = 'profile hidden';
+    $edit.className = 'edit hidden';
+    $createEntries.className = 'createEntries hidden';
+  }
+
+  // -------create entries view-----------
+  if (view === 'create-entry') {
+
+    $entries.className = 'entries hidden';
+    $profile.className = 'profile hidden';
+    $edit.className = 'edit hidden';
+    $createEntries.className = 'createEntries';
+  }
+
 }
 
 // New User Screen VS Returning User Screen
 document.addEventListener('DOMContentLoaded', function (event) {
-  if (data.profile.username === '' || data.profile.username === null) {
+  if (data.profile.username === '') {
     viewSwapping('edit-profile');
   } else {
     viewSwapping('profile');
