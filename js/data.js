@@ -7,7 +7,8 @@ var data = {
     fullName: '',
     location: '',
     avatarUrl: '',
-    bio: '',
-    entries: []
-  }
+    bio: ''
+  },
+
+  entries: []
 };
