@@ -1,22 +1,26 @@
 // -----------------EDIT PROFILE SET UP-----------------------
 var $avatarURL = document.getElementById('avatar-URL');
 var $avatarEditImage = document.querySelector('.avatarEditImage');
+var $entriesEditImage = document.querySelector('.entriesEditImage');
 var $editForm = document.querySelector('.edit-profile-form');
 var $imageURL = document.getElementById('imageURL');
-var $userInputURL = document.querySelector('.entriesEditImage');
 var $createForm = document.querySelector('.create-entries-form');
 
-// allow user to preview image before saving
+// ------------------ USER CAN PREVIEW IMAGES -----------------
+// preview entries image
 $imageURL.addEventListener('input', function (event) {
   var url = event.target.value;
-  $userInputURL.setAttribute('src', url);
+  $entriesEditImage.setAttribute('src', url);
 });
 
+// preview avatar image
 $avatarURL.addEventListener('input', function (event) {
   data.profile.avatarUrl = event.target.value;
   $avatarEditImage.setAttribute('src', data.profile.avatarUrl);
 });
 
+// ---------- SUBMIT FORM & SAVE TO LOCAL STORAGE --------------
+// users profile
 var $userName = document.getElementById('username');
 var $fullName = document.getElementById('fullName');
 var $location = document.getElementById('location');
@@ -33,15 +37,19 @@ $editForm.addEventListener('submit', function (event) {
   viewSwapping('profile');
 });
 
+// users entries
 var $title = document.getElementById('title');
 var $notes = document.getElementById('notes');
 
 $createForm.addEventListener('submit', function (event) {
-  data.entries.imageUrl = $imageURL.value;
-  data.entries.title = $title.value;
-  data.entries.notes = $notes.value;
+  var entriesData = {};
+  entriesData.imageUrl = $imageURL.value;
+  entriesData.title = $title.value;
+  entriesData.notes = $notes.value;
 
-  $avatarEditImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  data.entries.push(entriesData);
+
+  $entriesEditImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $createForm.reset();
   viewSwapping('entries');
 });
@@ -56,7 +64,7 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('data', savedDataJson);
 });
 
-// ----------------RENDERING FUNCTION-------------
+// --------------------RENDERING FUNCTION-------------------
 function domTreeCreation(model) {
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container viewProfile');
@@ -133,7 +141,7 @@ function viewSwapping(view) {
   var $entries = document.querySelector('.entries');
   var $createEntries = document.querySelector('.createEntries');
 
-  // ------edit-profile view---------
+  // edit-profile view
   if (view === 'edit-profile') {
     $edit.className = 'edit';
     $profile.className = 'profile hidden';
@@ -153,7 +161,7 @@ function viewSwapping(view) {
     $bio.textContent = data.profile.bio;
   }
 
-  // -------profile view-----------
+  // profile view
   if (view === 'profile') {
     $profile.className = 'profile';
     $edit.className = 'edit hidden';
@@ -167,7 +175,7 @@ function viewSwapping(view) {
     $profile.appendChild(newDomtree);
   }
 
-  // -------entries view-----------
+  // entries view
   if (view === 'entries') {
 
     $entries.className = 'entries';
@@ -176,7 +184,7 @@ function viewSwapping(view) {
     $createEntries.className = 'createEntries hidden';
   }
 
-  // -------create entries view-----------
+  // create entries view
   if (view === 'create-entry') {
 
     $entries.className = 'entries hidden';

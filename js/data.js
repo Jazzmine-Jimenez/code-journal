@@ -7,13 +7,7 @@ var data = {
     fullName: '',
     location: '',
     avatarUrl: '',
-    bio: ''
-  },
-
-  // How to get info from a an array within an object
-  entries: [{
-    imageUrl: '',
-    title: '',
-    notes: ''
-  }]
+    bio: '',
+    entries: []
+  }
 };
