@@ -17,7 +17,8 @@ body {
 input,
 textarea,
 .avatarEditImage,
-.avatarProfileImage {
+.avatarProfileImage,
+.entriesEditImage {
   width: 100%;
 }
 
@@ -26,12 +27,13 @@ input {
   line-height: 40px;
 }
 
-.saveButtonContainer {
+.buttonContainer {
   text-align: right;
 }
 
 .editButton,
-.saveButton {
+.saveButton,
+.newEntriesButton {
   font-family: 'Open Sans Condensed', sans-serif;
   background-color: white;
   color: black;
@@ -44,7 +46,8 @@ input {
   text-align: left;
 }
 
-.navbarProfile {
+.navbarProfile,
+.navbarEntries {
   text-decoration: none;
   margin-left: 0.5rem;
   font-size: 1.5rem;

@@ -19,25 +19,73 @@
   <header>
     Code Journal
     <a class="navbarProfile" href="#" data-view="profile">Profile</a>
+    <a class="navbarEntries" href="#" data-view="entries">Entries</a>
   </header>
   <main>
-<!----------------------- VIEW PROFILE ---------------------------->
-    <div class="profile hidden" data-view="profile">
+<!----------------------- CREATE ENTRIES ---------------------------->
+    <div class="createEntries hidden" data-view="create-entry">
+      <form class="create-entries-form" action="">
+        <div class="container">
+          <div class="row">
+            <h1>New Entry</h1>
+          </div>
+          <div class="row">
+            <div class="column-half">
+              <img class="entriesEditImage" src="images/placeholder-image-square.jpg" alt="New Entry Image">
+            </div>
+            <div class="column-half">
+              <label for="imageURL">Image URL:</label>
+              <div>
+                <input required type="url" name="imageURL" id="imageURL">
+              </div>
+              <label for="title">Title:</label>
+              <div>
+                <input required type="text" name="title" id="title">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes">Notes:</label>
+              <div>
+                <textarea required name="notes" id="notes" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="buttonContainer">
+            <button class="saveButton" type="submit">SAVE</button>
+          </div>
+        </div>
+      </form>
+    </div>
+<!----------------------- ENTRIES ---------------------------->
+    <div class="entries" data-view="entries">
+      <div class="container entries">
+        <div class="row">
+          <h1>Entries</h1>
+          <a href="#" data-view="create-entry" class="newEntriesButton">NEW</a>
+        </div>
+
+      </div>
+
+    </div>
+<!-------------------------- VIEW PROFILE ------------------------------>
+    <div class="profile" data-view="profile">
       <div class="container viewProfile"></div>
     </div>
-<!-------------------- EDIT PROFILE --------------------------------->
-    <div class="edit" data-view="edit-profile">
-    <form action="">
+<!------------------------- EDIT PROFILE ------------------------------->
+    <div class="edit hidden" data-view="edit-profile">
+    <form class="edit-profile-form" action="">
       <div class="container editProfile">
         <div class="row">
           <h1>Edit Profile</h1>
         </div>
         <div class="row">
-          <!------------------ Avatar Image Column --------------------------->
+          <!------------------ Avatar Image Column ------------------>
           <div class="column-half">
             <img class="avatarEditImage" src="images/placeholder-image-square.jpg" alt="Avatar image">
           </div>
-          <!------------------ Input Column--------------------------->
+          <!------------------ Input Column-------------------------->
           <div class="column-half">
             <label for="avatar-URL"> Avatar URL: </label>
             <div>
@@ -64,7 +112,7 @@
               <div class="textarea">
                 <textarea required name="bio" id="bio" cols="50" rows="10"></textarea>
               </div>
-            <div class="saveButtonContainer">
+            <div class="buttonContainer">
               <button class="saveButton" type="submit">SAVE</button>
             </div>
         </div>

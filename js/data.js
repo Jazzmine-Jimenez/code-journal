@@ -9,5 +9,6 @@ var data = {
     avatarUrl: '',
     bio: ''
   },
+
   entries: []
 };
